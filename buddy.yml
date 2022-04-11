@@ -1,0 +1,28 @@
+- pipeline: "Deploy to production"
+  on: "EVENT"
+  events:
+  - type: "PUSH"
+    refs:
+    - "refs/heads/hexo-source"
+  priority: "NORMAL"
+  fail_on_prepare_env_warning: true
+  actions:
+  - action: "Execute: hexo generate"
+    type: "BUILD"
+    working_directory: "/buddy/saintsitive-dev-github-io"
+    docker_image_name: "library/node"
+    docker_image_tag: "16"
+    execute_commands:
+    - "git clone -b \"hexo-source\" \"https://saintsitive-dev:ldkpE951!@github.com/saintsitive-dev/saintsitive-dev.github.io.git\" public || true"
+    - "npm install"
+    - "hexo generate"
+    - "cd public"
+    - "git config --global user.email \"sirirat.adelyn@gmail.com\" && git config --global user.name \"saintsitive-dev\""
+    - "git add . && git commit -am \"Push generated files\""
+    - "git push origin master --force"
+    setup_commands:
+    - "npm install hexo-cli -g"
+    volume_mappings:
+    - "/:/buddy/saintsitive-dev-github-io"
+    cache_base_image: true
+    shell: "BASH"
