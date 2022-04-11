@@ -3,11 +3,12 @@ support-for-ie = false
 vendor-prefixes = webkit moz ms official
 
 // Colors
-color-default = #293242 //oxford
+color-default = #684936 //oxford
+// color-default = #293242 //oxford
 color-grey = #f1f1f1 //background
 color-count = #b3a188 //ash blond
 color-group-header = #a4a3a1 //grey sky
-color-border = #ddd
+color-border = #e8dcd0
 color-link = #916848 //leather
 color-background = #f1f1f1
 color-sidebar-text = #777
@@ -20,8 +21,20 @@ color-facebook = #3b5998
 color-pinterest = #cb2027
 color-google = #dd4b39
 
+@font-face
+  font-family: Maitree
+  font-style: normal
+  font-weight: normal
+  src: url("fonts/Maitree-Regular.ttf")
+
+@font-face
+  font-family: Maitree
+  font-style: normal
+  font-weight: bold
+  src: url("fonts/Maitree-Bold.ttf")
+
 // Fonts
-font-sans = -apple-system, BlinkMacSystemFont,
+font-sans = Maitree, -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
     "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif
@@ -30,9 +43,9 @@ font-mono = "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace
 font-icon = FontAwesome
 font-icon-path = "fonts/fontawesome-webfont"
 font-icon-version = "4.0.3"
-font-size = 14px
+font-size = 1em
 line-height = 1.6em
-line-height-title = 1.1em
+line-height-title = 1.3em
 
 // Header
 logo-size = 40px
@@ -44,7 +57,7 @@ sidebar = hexo-config("sidebar")
 
 // Layout
 block-margin = 50px
-article-padding = 20px
+article-padding = 1.25rem
 mobile-nav-width = 280px
 main-column = 9
 sidebar-column = 3
