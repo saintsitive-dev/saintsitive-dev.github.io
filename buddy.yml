@@ -21,7 +21,7 @@
     - "git config --global user.email \"sirirat.adelyn@gmail.com\" && git config --global user.name \"saintsitive-dev\""
     - "git add . && git commit -am \"Push generated files\""
     - "git pull -r"
-    - "git push hexo-source:origin/master --force"
+    - "git push origin master --force"
     setup_commands:
     - "npm install hexo-cli -g"
     volume_mappings:
