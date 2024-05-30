@@ -26,3 +26,10 @@ git pull -r
 ```
 3. copy files from hexo-source public folder to public
 4. commit and push files to master
+
+## How to manually deploy using 1 command
+1. checkout hexo-source branch
+2. run a command
+``` bash
+hexo clean && hexo deploy
+```
