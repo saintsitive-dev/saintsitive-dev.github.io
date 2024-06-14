@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C# 8.0 - switch case From Statement to Expression | Saintsitive - life journal;</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="google-site-verification" content="au8etMf7f6-T7LIitvJjqhnb4zDjhyG0b3kdTVpFqkc" />
+  <meta name="description" content="เรื่องมันเริ่มมาจาก เมื่อคืนลง extension ใน visual studio code แล้วพบว่า warning งอกทั่วทุกหัวระแหงก่อนจะค่อยๆ rebuild แล้วกลับเป็นปกติยกเว้นบางไฟล์ที่ยังแดงเถือกไม่หาย และ 1 ในนั้นก็พาให้เราไปเจอกับ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# 8.0 - switch case From Statement to Expression">
+<meta property="og:url" content="https://saintsitive-dev.github.io/2020/08/15/c-sharp-8/index.html">
+<meta property="og:site_name" content="Saintsitive - life journal;">
+<meta property="og:description" content="เรื่องมันเริ่มมาจาก เมื่อคืนลง extension ใน visual studio code แล้วพบว่า warning งอกทั่วทุกหัวระแหงก่อนจะค่อยๆ rebuild แล้วกลับเป็นปกติยกเว้นบางไฟล์ที่ยังแดงเถือกไม่หาย และ 1 ในนั้นก็พาให้เราไปเจอกับ">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://saintsitive-dev.github.io/2020/08/15/c-sharp-8/csharp-8.png">
+<meta property="og:image" content="https://saintsitive-dev.github.io/2020/08/15/c-sharp-8/unreachable-break.png">
+<meta property="article:published_time" content="2020-08-15T00:35:51.000Z">
+<meta property="article:modified_time" content="2024-06-14T01:56:19.000Z">
+<meta property="article:author" content="Sirirat Rungpetcharat">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://saintsitive-dev.github.io/2020/08/15/c-sharp-8/csharp-8.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Saintsitive - life journal;" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+  <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v8.0&appId=632671150711959&autoLogAppEvents=1" nonce="ZQnSfi8l"></script>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Saintsitive - life journal;</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://saintsitive-dev.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-c-sharp-8" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C# 8.0 - switch case From Statement to Expression
+    </h1>
+  
+
+        <div class="article-meta">
+          <a href="/2020/08/15/c-sharp-8/" class="article-date">
+  <time datetime="2020-08-15T00:35:51.000Z" itemprop="datePublished">2020-08-15</time>
+</a>
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/2020/08/15/c-sharp-8/csharp-8.png" alt="c# and switch case expression"></p>
+<p>เรื่องมันเริ่มมาจาก เมื่อคืนลง extension ใน visual studio code แล้วพบว่า warning งอกทั่วทุกหัวระแหงก่อนจะค่อยๆ rebuild แล้วกลับเป็นปกติยกเว้นบางไฟล์ที่ยังแดงเถือกไม่หาย และ 1 ในนั้นก็พาให้เราไปเจอกับ code ชุดนึงเข้า</p>
+<p><img src="/2020/08/15/c-sharp-8/unreachable-break.png" alt="unreachable code"></p>
+<h2 id="มีคนวาง-break-ไว้หลัง-return"><a href="#มีคนวาง-break-ไว้หลัง-return" class="headerlink" title="มีคนวาง break ไว้หลัง return"></a>มีคนวาง break ไว้หลัง return</h2><p>ใจดำอำมหิตอะไรเยี่ยงนี้ 5555 break จะไม่มีวันได้เห็นเดือนเห็นตะวัน ไม่มีวันได้สัมผัสการ debug ใดใด เพราะ cursor ทั้งหลายจะโดน return ดีดออกจาก method ไปจนหมด</p>
+<h3 id="แต่ก่อนจะใจบุญลบ-code-ออกไป-สมองดันสงสัยซะก่อน"><a href="#แต่ก่อนจะใจบุญลบ-code-ออกไป-สมองดันสงสัยซะก่อน" class="headerlink" title="แต่ก่อนจะใจบุญลบ code ออกไป สมองดันสงสัยซะก่อน"></a>แต่ก่อนจะใจบุญลบ code ออกไป สมองดันสงสัยซะก่อน</h3><p>แต่ switch case มันใช้กับ break และ default นี่หว่า 4 สหายที่ใช้กันมาแต่โบราณกาล แล้วถ้าไม่มี break ทิ้งไว้แค่ return มันก็ได้แหละ แต่ทำไมมันรู้สึกขัดใจแปลกๆวะ หรือเพราะมันทำงานคนละอย่างกัน…</p>
+<p><em>(สาระ - break จะดีดเราออกจาก switch case แล้วไปต่อบรรทัดล่างของ method นี้ ในขณะที่ return จะดีดเราออกจาก method ไปเลย)</em></p>
+<p>งั้น use case ที่ใช้ switch case + return นี่มันใช้กับอะไรละเนี่ย พอสงสัยก็เลยเริ่มเซิสค่ะ แต่พอเซิสกลับพบว่ามันมีรูปแบบการเขียน switch case ใหม่ๆโผล่มาอีกมากมาย และจุดเปลี่ยนล่าสุดแห่งวงการ switch case ก็เป็น feature ที่เปิดกว้างให้ concept ของ switch case มีความเหมาะสมกับการใช้งานหลากหลายมากขึ้น ซึ่งมาพร้อมกับ C# version 8.0 ที่เพิ่งจุดระเบิดเปิดตัวไปเมื่อไม่นานนี้เอง</p>
+<h2 id="From-Statement-to-Expression"><a href="#From-Statement-to-Expression" class="headerlink" title="From Statement to Expression"></a>From Statement to Expression</h2><p>ใน C# version ใหม่ จริงๆมีหลาย feature แต่ที่อยากพูดถึงก่อนก็คือ switch case</p>
+<p>อยากที่เกริ่นไว้ ปกติเราใช้ switch case คู่กับ break มาจนเป็นธรรมชาติ แล้วถ้าไปอ่าน <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/switch">doc</a> ของมันก็จะพบแมสเสจบางอย่างที่ก่อให้เกิดความสงสัย (คนอื่นอาจรู้อยู่แล้ว 555)</p>
+<blockquote>
+<p>switch is a selection statement…</p>
+</blockquote>
+<blockquote>
+<p>The switch statement is often used as an alternative to an if-else construct…</p>
+</blockquote>
+<p>ขีดเส้นใต้ตรง statement</p>
+<p>พอลองเซิสต่อไป ก็ย้อนกลับไปถึงคำนิยามของ <strong>Statement ใน C# ว่ามันคือ กลุ่มก้อนของ keywords (codes) ที่ก่อให้เกิด action อาจจะมีหรือไม่มี expressions และ operators ก็ได้</strong></p>
+<p><strong>และ expression เป็นซับเซตของ statement แต่เป็น action ที่มีการคำนวณ หรือทำอะไรบางอย่างให้เกิด value และมีการเก็บลงในตัวแปร</strong></p>
+<p>ถ้างง ดูตัวอย่าง code ดีกว่า</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> cats; <span class="comment">//statement (declaration statement)</span></span><br><span class="line">cats = <span class="number">2</span>; <span class="comment">//ก็ยัง statement</span></span><br><span class="line">cats++; <span class="comment">//เนี่ย EXPRESSION statement มีการ + แล้วเก็บลง cats</span></span><br></pre></td></tr></table></figure>
+
+<p>และ switch case ดั้งเดิม เกิดมาพร้อมคำนิยามว่าเป็น <strong>statement</strong> นั่นหมายความว่าเราสามารถใช้ switch case เพื่อส่ง value บางอย่างกลับ (return) หรือแค่ให้เข้ามาทำงานบางอย่างแล้วผ่านไปโดยไม่ส่ง value อะไรกลับก็ได้เช่นกัน (break)</p>
+<h2 id="แต่พอมาถึง-C-8-0-ในรายการ-feature-ใหม่มีสิ่งที่เรียกว่า-switch-expression"><a href="#แต่พอมาถึง-C-8-0-ในรายการ-feature-ใหม่มีสิ่งที่เรียกว่า-switch-expression" class="headerlink" title="แต่พอมาถึง C# 8.0 ในรายการ feature ใหม่มีสิ่งที่เรียกว่า switch expression"></a>แต่พอมาถึง C# 8.0 ในรายการ feature ใหม่มีสิ่งที่เรียกว่า <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/switch-expression">switch expression</a></h2><p>ของเดิมก็ทำได้อยู่แล้ว ดังนั้นคราวนี้จึงเป็นการปรับ syntax ใหม่เพื่อให้เราเห็นความแตกต่างระหว่าง case ได้ง่ายขึ้น</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> statusDisplay;</span><br><span class="line"><span class="keyword">switch</span> (projectStatusId)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> (<span class="built_in">int</span>)ProjectStatus.Active:</span><br><span class="line">        statusDisplay = <span class="string">&quot;Working&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> (<span class="built_in">int</span>)ProjectStatus.Finished:</span><br><span class="line">        statusDisplay = <span class="string">&quot;Finish&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> (<span class="built_in">int</span>)ProjectStatus.Terminated:</span><br><span class="line">        statusDisplay = <span class="string">&quot;Terminated&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> (<span class="built_in">int</span>)ProjectStatus.Pending:</span><br><span class="line">        statusDisplay = <span class="string">&quot;Pending&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="literal">default</span>:</span><br><span class="line">        statusDisplay = <span class="string">&quot;Not supported status id&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">return</span> statusDisplay;</span><br></pre></td></tr></table></figure>
+
+<p>สามารถเปลี่ยนใหม่ให้สั้นลงได้เป็นแบบนี้</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">projectStatusId <span class="keyword">switch</span> &#123;</span><br><span class="line">    ProjectStatus.Active     =&gt; <span class="keyword">return</span> <span class="string">&quot;Working&quot;</span>,</span><br><span class="line">    ProjectStatus.Finished   =&gt; <span class="keyword">return</span> <span class="string">&quot;Finished&quot;</span>,</span><br><span class="line">    ProjectStatus.Terminated =&gt; <span class="keyword">return</span> <span class="string">&quot;Terminated&quot;</span>,</span><br><span class="line">    ProjectStatus.Pending    =&gt; <span class="keyword">return</span> <span class="string">&quot;Pending&quot;</span>,</span><br><span class="line">    _ =&gt; <span class="keyword">throw</span> <span class="keyword">new</span> ArgumentException(message: <span class="string">&quot;Not supported status id&quot;</span>)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>การเอา case : ออกไปแล้วใช้ &#x3D;&gt; แทน</li>
+<li>การเอา default ออก เหลือแค่ _</li>
+<li>การสลับ match มาวางหน้า switch</li>
+</ol>
+<p>ทั้งหมดทั้งมวลมันทำให้เกิดการจัดวางบรรทัดแบบใหม่ที่ส่งผลให้เราอ่าน code และเห็นผลลัพท์ที่จะได้จาก case ต่างๆง่ายขึ้นมาก สมแล้วที่ทาง C# 8.0 เคลมว่าเป็น feature ที่เพิ่มเติมความพิเศษให้ switch case พร้อมเป็น Expression statement อย่างสมศักดิ์ศรี</p>
+<p>นอกจากนี้ก็ยังมีวิธีการเขียน switch case เพิ่มเติมใน version นี้อีกหลายรูปแบบ แนะนำให้เข้าไปลองอ่าน document ต้นทางกันดู<em>แล้วจะรู้ว่า switch case เป็นได้มากกว่าที่คุณคิด</em> <span class="github-emoji" alias="wink" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f609.png?v8">&#x1f609;</span></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://saintsitive-dev.github.io/2020/08/15/c-sharp-8/" data-id="clxe1fzfa000335peaga4ak49" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C#</a></li></ul>
+
+    </footer>
+  </div>
+  
+    <div class="fb-comments" data-href="https://saintsitive-dev.github.io/2020/08/15/c-sharp-8/" data-numposts="5" data-width="100%"></div>
+    
+<nav id="article-nav">
+  
+    <a href="/2020/08/16/jmeter-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JMeter Series - [2] Recording Template บันทึกรูปแบบการท่องเว็บไว้ยิงรัวๆ
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/08/12/jmeter-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JMeter Series - [1] Intro to JMeter ทำไมใครๆบอกว่าง่าย</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">To you, who are reading...
+    <a target="_blank" rel="noopener" href="https://webring.wonderful.software#saintsitive" title="วงแหวนเว็บ">
+      <img
+        alt="วงแหวนเว็บ"
+        width="20"
+        height="20"
+        src="https://webring.wonderful.software/webring.black.svg"
+      />
+    </a>
+  </h3>
+  <img
+        alt="วงแหวนเว็บ"
+        width="20"
+        height="20"
+        src="https://webring.wonderful.software/webring.black.svg"
+      />
+  <div class="widget">
+    <p>The title says, "life journal", What do you expected?</p>
+    <p>Kidding ;) I started this blog just to write down many things I got along the way from a programmer to wherever I am now.</p>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/05/30/aws-summit-bangkok-2024/">อีเวนท์แรกหลัง covid AWS Summit Bangkok 2024</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/22/hexo-cname/">Deploy ขึ้น Github Pages ด้วย Hexo one command แล้ว custom domain หาย!!</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/20/easily-update-hexo/">Hexo มันอัพเดตง่ายแบบนี้เลยเหรอ</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/06/c-sharp-change-framework/">เปลี่ยน netcoreapp2.2 เป็น netcoreapp3.1 บทเรียนที่ได้มาจากการฝ่าหลุมอากาศ!!</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/16/jmeter-2/">JMeter Series - [2] Recording Template บันทึกรูปแบบการท่องเว็บไว้ยิงรัวๆ</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core-2-2/" rel="tag">ASP.NET Core 2.2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core-3-1/" rel="tag">ASP.NET Core 3.1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWSSummit2024/" rel="tag">AWSSummit2024</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNAME/" rel="tag">CNAME</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cypress/" rel="tag">Cypress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Framework/" rel="tag">Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GithubPages/" rel="tag">GithubPages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JIRA/" rel="tag">JIRA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JMeter/" rel="tag">JMeter</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-test/" rel="tag">Load test</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Migration/" rel="tag">Migration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Performance-test/" rel="tag">Performance test</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redoc/" rel="tag">Redoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stress-test/" rel="tag">Stress test</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/" rel="tag">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/amazon/" rel="tag">amazon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/amazonQ/" rel="tag">amazonQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awsCodeCatalyst/" rel="tag">awsCodeCatalyst</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cname/" rel="tag">cname</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeCatalyst/" rel="tag">codeCatalyst</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conceptual/" rel="tag">conceptual</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/customDomain/" rel="tag">customDomain</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cybersecurity/" rel="tag">cybersecurity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/generativeAI/" rel="tag">generativeAI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lesson-learned/" rel="tag">lesson learned</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/" rel="tag">swagger</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/testing/" rel="tag">testing</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ASP-NET-Core-2-2/" style="font-size: 10px;">ASP.NET Core 2.2</a> <a href="/tags/ASP-NET-Core-3-1/" style="font-size: 10px;">ASP.NET Core 3.1</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWSSummit2024/" style="font-size: 10px;">AWSSummit2024</a> <a href="/tags/C/" style="font-size: 20px;">C#</a> <a href="/tags/CNAME/" style="font-size: 10px;">CNAME</a> <a href="/tags/Cypress/" style="font-size: 10px;">Cypress</a> <a href="/tags/Framework/" style="font-size: 10px;">Framework</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/JMeter/" style="font-size: 15px;">JMeter</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Load-test/" style="font-size: 15px;">Load test</a> <a href="/tags/Migration/" style="font-size: 10px;">Migration</a> <a href="/tags/Performance-test/" style="font-size: 15px;">Performance test</a> <a href="/tags/Redoc/" style="font-size: 10px;">Redoc</a> <a href="/tags/Stress-test/" style="font-size: 15px;">Stress test</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/amazon/" style="font-size: 10px;">amazon</a> <a href="/tags/amazonQ/" style="font-size: 10px;">amazonQ</a> <a href="/tags/awsCodeCatalyst/" style="font-size: 10px;">awsCodeCatalyst</a> <a href="/tags/cname/" style="font-size: 10px;">cname</a> <a href="/tags/codeCatalyst/" style="font-size: 10px;">codeCatalyst</a> <a href="/tags/conceptual/" style="font-size: 10px;">conceptual</a> <a href="/tags/customDomain/" style="font-size: 10px;">customDomain</a> <a href="/tags/cybersecurity/" style="font-size: 10px;">cybersecurity</a> <a href="/tags/generativeAI/" style="font-size: 10px;">generativeAI</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lesson-learned/" style="font-size: 10px;">lesson learned</a> <a href="/tags/security/" style="font-size: 10px;">security</a> <a href="/tags/swagger/" style="font-size: 10px;">swagger</a> <a href="/tags/testing/" style="font-size: 15px;">testing</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Sirirat Rungpetcharat<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

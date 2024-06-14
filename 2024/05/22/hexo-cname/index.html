@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Deploy ขึ้น Github Pages ด้วย Hexo one command แล้ว custom domain หาย!! | Saintsitive - life journal;</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="google-site-verification" content="au8etMf7f6-T7LIitvJjqhnb4zDjhyG0b3kdTVpFqkc" />
+  <meta name="description" content="สืบเนื่องจากการฟื้นคืนชีพเพราะโดนค่า Domain name เตือนสติ เลยได้กลับมาเขียน blog อีกครั้งเมื่อไม่กี่วันก่อน หลังจากอัพเดต blog engine สุดเลิฟ Hexo เรียบร้อยก็มาถึงความพยายามรื้อถอน CD pipeline ค่ะ ก่อ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deploy ขึ้น Github Pages ด้วย Hexo one command แล้ว custom domain หาย!!">
+<meta property="og:url" content="https://saintsitive-dev.github.io/2024/05/22/hexo-cname/index.html">
+<meta property="og:site_name" content="Saintsitive - life journal;">
+<meta property="og:description" content="สืบเนื่องจากการฟื้นคืนชีพเพราะโดนค่า Domain name เตือนสติ เลยได้กลับมาเขียน blog อีกครั้งเมื่อไม่กี่วันก่อน หลังจากอัพเดต blog engine สุดเลิฟ Hexo เรียบร้อยก็มาถึงความพยายามรื้อถอน CD pipeline ค่ะ ก่อ">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://saintsitive-dev.github.io/2024/05/22/hexo-cname/404-github-pages-not-found.png">
+<meta property="article:published_time" content="2024-05-22T23:29:50.000Z">
+<meta property="article:modified_time" content="2024-06-14T01:56:19.000Z">
+<meta property="article:author" content="Sirirat Rungpetcharat">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="cname">
+<meta property="article:tag" content="GithubPages">
+<meta property="article:tag" content="github">
+<meta property="article:tag" content="CNAME">
+<meta property="article:tag" content="customDomain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://saintsitive-dev.github.io/2024/05/22/hexo-cname/404-github-pages-not-found.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Saintsitive - life journal;" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+  <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v8.0&appId=632671150711959&autoLogAppEvents=1" nonce="ZQnSfi8l"></script>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Saintsitive - life journal;</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://saintsitive-dev.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-hexo-cname" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Deploy ขึ้น Github Pages ด้วย Hexo one command แล้ว custom domain หาย!!
+    </h1>
+  
+
+        <div class="article-meta">
+          <a href="/2024/05/22/hexo-cname/" class="article-date">
+  <time datetime="2024-05-22T23:29:50.000Z" itemprop="datePublished">2024-05-22</time>
+</a>
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>สืบเนื่องจากการฟื้นคืนชีพเพราะโดนค่า Domain name เตือนสติ เลยได้กลับมาเขียน blog อีกครั้งเมื่อไม่กี่วันก่อน หลังจากอัพเดต blog engine สุดเลิฟ Hexo เรียบร้อยก็มาถึงความพยายามรื้อถอน CD pipeline ค่ะ</p>
+<p>ก่อนเริ่มทำก็สำรวจก่อนเลยว่าตอนนี้ Hexo มีวิธีการ deploy แบบไหน</p>
+<p>ซึ่งสองปีผ่านไป Hexo ไม่ทำให้ผิดหวัง มี 1 one command deployment ที่จบทุกประเด็นการ deploy ขึ้น Github Pages ด้วย configuration และ <code>hexo deploy</code> command เดียว</p>
+<p>เราก็จัดเลย</p>
+<h1 id="ผ่าม"><a href="#ผ่าม" class="headerlink" title="ผ่าม"></a>ผ่าม</h1><p><img src="/2024/05/22/hexo-cname/404-github-pages-not-found.png" alt="404 github page not found"></p>
+<h1 id="x1f631"><a href="#x1f631" class="headerlink" title="&#x1f631;"></a><span class="github-emoji" alias="scream" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f631.png?v8">&#x1f631;</span></h1><p><strong>แตก</strong> ถถถถถถ</p>
+<p>งงมากแม่ นี่มันเกิดอะไรขึ้น อยู่ดีๆเว็บที่ใช้งานได้มาตลอดก็เข้าไม่ถึงอีกต่อไป ไปดูที่ Github ก็ปกติ branch ที่ใช้ลง blog ทุกอย่างก็อัพเดตปกติ branch เก็บ code hexo ก็อัพเดตปกติ</p>
+<p>ทุกอย่างปกติ</p>
+<p>วิ่งกลับมาดู github page setting เอาละเจอของแปลก custom domain name ที่ผูกไว้ตอนนี้คือหายไป</p>
+<p>Google สักพักก็เจอทางออก ที่แท้การจะ auto deploy github page ต้องสร้างไฟล์ CNAME ไว้ที่ root folder ด้วยค่ะ</p>
+<p>และสำหรับ hexo เราต้องวางไว้ใน source</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">source</span><br><span class="line">  |_drafts</span><br><span class="line">  |_posts</span><br><span class="line">  CNAME</span><br></pre></td></tr></table></figure>
+
+<p>เอาละ มาลองกันค่ะ</p>
+<h3 id="ถ้าทุกคนยังเห็นโพสนี้-แปลว่าวิธีนี้-work-5555555"><a href="#ถ้าทุกคนยังเห็นโพสนี้-แปลว่าวิธีนี้-work-5555555" class="headerlink" title="ถ้าทุกคนยังเห็นโพสนี้ แปลว่าวิธีนี้ work 5555555"></a>ถ้าทุกคนยังเห็นโพสนี้ แปลว่าวิธีนี้ work 5555555</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://saintsitive-dev.github.io/2024/05/22/hexo-cname/" data-id="clxe1fzfe000735pehnhhbffa" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNAME/" rel="tag">CNAME</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GithubPages/" rel="tag">GithubPages</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cname/" rel="tag">cname</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/customDomain/" rel="tag">customDomain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+    <div class="fb-comments" data-href="https://saintsitive-dev.github.io/2024/05/22/hexo-cname/" data-numposts="5" data-width="100%"></div>
+    
+<nav id="article-nav">
+  
+    <a href="/2024/05/30/aws-summit-bangkok-2024/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          อีเวนท์แรกหลัง covid AWS Summit Bangkok 2024
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/05/20/easily-update-hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hexo มันอัพเดตง่ายแบบนี้เลยเหรอ</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title">To you, who are reading...
+    <a target="_blank" rel="noopener" href="https://webring.wonderful.software#saintsitive" title="วงแหวนเว็บ">
+      <img
+        alt="วงแหวนเว็บ"
+        width="20"
+        height="20"
+        src="https://webring.wonderful.software/webring.black.svg"
+      />
+    </a>
+  </h3>
+  <img
+        alt="วงแหวนเว็บ"
+        width="20"
+        height="20"
+        src="https://webring.wonderful.software/webring.black.svg"
+      />
+  <div class="widget">
+    <p>The title says, "life journal", What do you expected?</p>
+    <p>Kidding ;) I started this blog just to write down many things I got along the way from a programmer to wherever I am now.</p>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/05/30/aws-summit-bangkok-2024/">อีเวนท์แรกหลัง covid AWS Summit Bangkok 2024</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/22/hexo-cname/">Deploy ขึ้น Github Pages ด้วย Hexo one command แล้ว custom domain หาย!!</a>
+          </li>
+        
+          <li>
+            <a href="/2024/05/20/easily-update-hexo/">Hexo มันอัพเดตง่ายแบบนี้เลยเหรอ</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/06/c-sharp-change-framework/">เปลี่ยน netcoreapp2.2 เป็น netcoreapp3.1 บทเรียนที่ได้มาจากการฝ่าหลุมอากาศ!!</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/16/jmeter-2/">JMeter Series - [2] Recording Template บันทึกรูปแบบการท่องเว็บไว้ยิงรัวๆ</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core-2-2/" rel="tag">ASP.NET Core 2.2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core-3-1/" rel="tag">ASP.NET Core 3.1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWSSummit2024/" rel="tag">AWSSummit2024</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNAME/" rel="tag">CNAME</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cypress/" rel="tag">Cypress</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Framework/" rel="tag">Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GithubPages/" rel="tag">GithubPages</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JIRA/" rel="tag">JIRA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JMeter/" rel="tag">JMeter</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-test/" rel="tag">Load test</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Migration/" rel="tag">Migration</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Performance-test/" rel="tag">Performance test</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redoc/" rel="tag">Redoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Stress-test/" rel="tag">Stress test</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/" rel="tag">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/amazon/" rel="tag">amazon</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/amazonQ/" rel="tag">amazonQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awsCodeCatalyst/" rel="tag">awsCodeCatalyst</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cname/" rel="tag">cname</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/codeCatalyst/" rel="tag">codeCatalyst</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/conceptual/" rel="tag">conceptual</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/customDomain/" rel="tag">customDomain</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cybersecurity/" rel="tag">cybersecurity</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/generativeAI/" rel="tag">generativeAI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lesson-learned/" rel="tag">lesson learned</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/" rel="tag">security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/swagger/" rel="tag">swagger</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/testing/" rel="tag">testing</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ASP-NET-Core-2-2/" style="font-size: 10px;">ASP.NET Core 2.2</a> <a href="/tags/ASP-NET-Core-3-1/" style="font-size: 10px;">ASP.NET Core 3.1</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWSSummit2024/" style="font-size: 10px;">AWSSummit2024</a> <a href="/tags/C/" style="font-size: 20px;">C#</a> <a href="/tags/CNAME/" style="font-size: 10px;">CNAME</a> <a href="/tags/Cypress/" style="font-size: 10px;">Cypress</a> <a href="/tags/Framework/" style="font-size: 10px;">Framework</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/JIRA/" style="font-size: 10px;">JIRA</a> <a href="/tags/JMeter/" style="font-size: 15px;">JMeter</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Load-test/" style="font-size: 15px;">Load test</a> <a href="/tags/Migration/" style="font-size: 10px;">Migration</a> <a href="/tags/Performance-test/" style="font-size: 15px;">Performance test</a> <a href="/tags/Redoc/" style="font-size: 10px;">Redoc</a> <a href="/tags/Stress-test/" style="font-size: 15px;">Stress test</a> <a href="/tags/XML/" style="font-size: 10px;">XML</a> <a href="/tags/amazon/" style="font-size: 10px;">amazon</a> <a href="/tags/amazonQ/" style="font-size: 10px;">amazonQ</a> <a href="/tags/awsCodeCatalyst/" style="font-size: 10px;">awsCodeCatalyst</a> <a href="/tags/cname/" style="font-size: 10px;">cname</a> <a href="/tags/codeCatalyst/" style="font-size: 10px;">codeCatalyst</a> <a href="/tags/conceptual/" style="font-size: 10px;">conceptual</a> <a href="/tags/customDomain/" style="font-size: 10px;">customDomain</a> <a href="/tags/cybersecurity/" style="font-size: 10px;">cybersecurity</a> <a href="/tags/generativeAI/" style="font-size: 10px;">generativeAI</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lesson-learned/" style="font-size: 10px;">lesson learned</a> <a href="/tags/security/" style="font-size: 10px;">security</a> <a href="/tags/swagger/" style="font-size: 10px;">swagger</a> <a href="/tags/testing/" style="font-size: 15px;">testing</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Sirirat Rungpetcharat<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
